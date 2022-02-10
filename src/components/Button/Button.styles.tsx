@@ -14,4 +14,10 @@ export const StyledButton = styled.button`
   border: none;
 
   cursor: pointer;
+
+  transition: box-shadow 0.2s linear;
+
+  &:hover {
+    box-shadow: 0 10px 20px 0px rgba(0, 0, 0, 0.15);
+  }
 `;
