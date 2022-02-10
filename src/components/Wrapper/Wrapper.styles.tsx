@@ -4,7 +4,7 @@ export const WrapperStyles = styled.main`
   display: flex;
   justify-content: center;
 
-  padding-top: 2rem;
+  padding: 2rem 1rem 0 1rem;
 
   div {
     max-width: 425px;
