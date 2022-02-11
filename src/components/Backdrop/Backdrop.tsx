@@ -12,20 +12,20 @@ export const Backdrop = ({
   handleCanPlay,
 }: {
   result: boolean;
-  imageTaken: boolean;
+  imageTaken: string;
   onCancel: () => void;
   videoRef: any;
   handleCanPlay: () => void;
 }) => {
   return (
-    <BackdropStyled>
+    <BackdropStyled image={imageTaken}>
       <Top>
         <h2>Take picture</h2>
         <p>Fit your ID card inside the frame.</p>
         <p>The picture will be taken automatically.</p>
       </Top>
       <X />
-      <Camera result={result} imageTaken={imageTaken}>
+      <Camera result={result} imageTaken={!!imageTaken}>
         <video
           ref={videoRef}
           onCanPlay={handleCanPlay}

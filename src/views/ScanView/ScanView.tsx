@@ -36,7 +36,7 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
     return new Promise((resolve) => {
       if (canvasRef && videoRef.current !== null) {
         const context = canvasRef.current?.getContext('2d');
-        resolve(context?.drawImage(videoRef.current, 0, 0));
+        resolve(context?.drawImage(videoRef.current, 0, 0, 290, 180));
       }
     });
   };
@@ -68,7 +68,7 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
       } else {
         await takePicture();
         const imageData: string | undefined =
-          canvasRef.current?.toDataURL('image/jpg');
+          canvasRef.current?.toDataURL('image/png');
         if (imageData) {
           onSaveImage(imageData);
 
@@ -93,14 +93,14 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
       <Backdrop
         onCancel={handleCancel}
         result={result}
-        imageTaken={!!imageData}
+        imageTaken={imageData}
         handleCanPlay={handleCanPlay}
         videoRef={videoRef}
       />
       <canvas
         id="canvas"
-        width={260}
-        height={160}
+        width={290}
+        height={180}
         ref={canvasRef}
         style={{
           display: 'none',

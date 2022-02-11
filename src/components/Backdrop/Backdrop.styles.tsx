@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const BackdropStyled = styled.div`
+export const BackdropStyled = styled.div<{ image: string }>`
   display: flex;
   flex-wrap: wrap;
 
@@ -10,6 +10,11 @@ export const BackdropStyled = styled.div`
 
   width: 100vw;
   height: ${window.innerHeight}px;
+
+  background-image: url(${({ image }) => image});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 export const Top = styled.div`

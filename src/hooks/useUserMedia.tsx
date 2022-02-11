@@ -10,8 +10,8 @@ export const useUserMedia = () => {
       video: {
         aspectRatio: 16 / 9,
         facingMode: 'environment',
-        width: 260,
-        height: 160,
+        width: 290,
+        height: 180,
       },
     };
 
