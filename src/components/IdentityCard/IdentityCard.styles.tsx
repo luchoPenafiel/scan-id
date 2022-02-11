@@ -21,7 +21,6 @@ export const IdentityCard = styled.img`
   height: 160px;
 
   object-fit: cover;
-  object-position: 50% 50%;
 `;
 
 export const EmptyCard = styled.div`

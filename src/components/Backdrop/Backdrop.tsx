@@ -8,10 +8,14 @@ export const Backdrop = ({
   onCancel,
   result,
   imageTaken,
+  videoRef,
+  handleCanPlay,
 }: {
   result: boolean;
   imageTaken: boolean;
   onCancel: () => void;
+  videoRef: any;
+  handleCanPlay: () => void;
 }) => {
   return (
     <BackdropStyled>
@@ -21,7 +25,21 @@ export const Backdrop = ({
         <p>The picture will be taken automatically.</p>
       </Top>
       <X />
-      <Camera result={result} imageTaken={imageTaken} />
+      <Camera result={result} imageTaken={imageTaken}>
+        <video
+          ref={videoRef}
+          onCanPlay={handleCanPlay}
+          autoPlay
+          playsInline
+          muted
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: -1,
+          }}
+        />
+      </Camera>
       <X />
       <Bottom>
         <p>

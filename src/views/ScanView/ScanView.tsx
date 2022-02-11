@@ -90,35 +90,17 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
 
   return (
     <>
-      <div>
-        <div></div>
-      </div>
-
-      <video
-        ref={videoRef}
-        onCanPlay={handleCanPlay}
-        autoPlay
-        playsInline
-        muted
-        style={{
-          position: 'fixed',
-          top: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-          objectFit: 'cover',
-          zIndex: -1,
-        }}
-      />
-
       <Backdrop
         onCancel={handleCancel}
         result={result}
         imageTaken={!!imageData}
+        handleCanPlay={handleCanPlay}
+        videoRef={videoRef}
       />
       <canvas
         id="canvas"
-        width={window.innerWidth}
-        height={window.innerHeight}
+        width={260}
+        height={160}
         ref={canvasRef}
         style={{
           display: 'none',
