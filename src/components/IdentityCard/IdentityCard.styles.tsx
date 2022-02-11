@@ -17,6 +17,7 @@ export const IdentityCardWrapper = styled.div`
 `;
 
 export const IdentityCard = styled.img`
+  display: block;
   width: 290px;
   height: 180px;
 
