@@ -98,6 +98,12 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
         autoPlay
         playsInline
         muted
+        style={{
+          width: '260px',
+          height: '160px',
+          objectFit: 'cover',
+          borderRadius: '12px',
+        }}
       />
 
       <canvas id="canvas" width={260} height={160} ref={canvasRef} />
