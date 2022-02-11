@@ -1,7 +1,7 @@
 // Vendors
 import styled from 'styled-components';
 
-export const Wrapper = styled.div<{ image?: string }>`
+export const IdentityCard = styled.div<{ image?: string }>`
   height: 160px;
   width: 260px;
 
@@ -18,7 +18,7 @@ export const Wrapper = styled.div<{ image?: string }>`
   background-repeat: no-repeat;
 `;
 
-export const Empty = styled.div`
+export const EmptyCard = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

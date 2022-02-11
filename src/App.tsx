@@ -1,17 +1,36 @@
 // Vendors
-import React from 'react';
+import { useState, useCallback } from 'react';
 
 // Views
-import { IdentityView } from './views/IdentityView/IdentityView';
+import { IdentityView, ScanView } from './views';
 
 // Styles
 import { GlobalStyles } from './GlobalStyes';
 
 const App = () => {
+  const [showScanView, setShowScanView] = useState(false);
+  const [image, setImage] = useState<string>('');
+
+  const handleTakePicture = () => {
+    setShowScanView(true);
+  };
+
+  const handleCancel = () => {
+    setShowScanView(false);
+  };
+
+  const handleSetImage = useCallback((image) => {
+    setImage(image);
+  }, []);
+
   return (
     <>
       <GlobalStyles />
-      <IdentityView />
+      {showScanView ? (
+        <ScanView onSaveImage={handleSetImage} onCancel={handleCancel} />
+      ) : (
+        <IdentityView image={image} onTakePicture={handleTakePicture} />
+      )}
     </>
   );
 };

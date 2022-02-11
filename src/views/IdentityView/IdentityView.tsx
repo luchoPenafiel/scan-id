@@ -2,9 +2,24 @@
 import React from 'react';
 
 // Components
-import { Header, IdentityCard, Wrapper } from '../../components';
+import {
+  Button,
+  Header,
+  Wrapper,
+  IdentityCard,
+  EmptyCard,
+} from '../../components';
 
-export const IdentityView = () => {
+type IdentityViewTypes = {
+  image?: string;
+  onTakePicture: () => void;
+};
+
+export const IdentityView = ({ image, onTakePicture }: IdentityViewTypes) => {
+  const handleTakePicture = () => {
+    onTakePicture();
+  };
+
   return (
     <>
       <Header />
@@ -14,7 +29,17 @@ export const IdentityView = () => {
           Take a picture. It may take time to validate your personal
           information.
         </p>
-        <IdentityCard />
+        {image ? (
+          <IdentityCard image={image}>
+            <Button onClick={handleTakePicture}>Retake picture</Button>
+          </IdentityCard>
+        ) : (
+          <IdentityCard>
+            <EmptyCard>
+              <Button onClick={handleTakePicture}>Take picture</Button>
+            </EmptyCard>
+          </IdentityCard>
+        )}
       </Wrapper>
     </>
   );
