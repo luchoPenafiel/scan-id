@@ -8,6 +8,7 @@ export const useUserMedia = () => {
     const constraints: MediaStreamConstraints = {
       audio: false,
       video: {
+        aspectRatio: 16 / 9,
         facingMode: 'environment',
         width: 260,
         height: 160,
