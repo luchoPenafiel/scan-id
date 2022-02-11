@@ -53,14 +53,14 @@ export const Bottom = styled.div`
 
 export const X = styled.div`
   background: rgba(0, 0, 0, 0.7);
-  width: calc((100vw - 260px) / 2);
-  height: 160px;
+  width: calc((100vw - 290px) / 2);
+  height: 180px;
 `;
 
 export const Camera = styled.div<{ result: boolean; imageTaken: boolean }>`
   border: 2px solid
     ${({ result, imageTaken }) =>
       imageTaken ? (result ? 'green' : 'red') : 'transparent'};
-  width: 260px;
-  height: 160px;
+  width: 290px;
+  height: 180px;
 `;
