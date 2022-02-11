@@ -9,8 +9,8 @@ export const useUserMedia = () => {
       audio: false,
       video: {
         facingMode: 'environment',
-        width: 260,
-        height: 160,
+        width: window.innerWidth,
+        height: window.innerHeight,
       },
     };
 

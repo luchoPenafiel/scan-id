@@ -1,7 +1,7 @@
 // Vendors
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<{ variant: 'primary' | 'secondary' }>`
   padding: 0.75rem 1.25rem;
 
   color: var(--white);
@@ -10,7 +10,8 @@ export const StyledButton = styled.button`
   text-transform: uppercase;
 
   border-radius: 1.5rem;
-  background-color: var(--blue);
+  background-color: ${({ variant }) =>
+    variant === 'secondary' ? 'transparent' : 'var(--blue)'};
   border: none;
 
   cursor: pointer;

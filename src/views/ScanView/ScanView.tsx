@@ -8,7 +8,7 @@ import { useUserMedia } from '../../hooks/useUserMedia';
 import { sendImage } from '../../api/sendImage';
 
 // Components
-import { Button } from '../../components';
+import { Backdrop } from '../../components';
 
 type ScanViewTypes = {
   onSaveImage: (image: string) => void;
@@ -18,6 +18,7 @@ type ScanViewTypes = {
 export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
   const [result, setResult] = useState<boolean>(false);
   const [helper, setHelper] = useState<boolean>(false);
+  const [imageData, setImageData] = useState('');
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -70,9 +71,11 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
           canvasRef.current?.toDataURL('image/jpg');
         if (imageData) {
           onSaveImage(imageData);
+
           const response = await sendImage(imageData);
           const result = response.summary.outcome === 'Approved';
 
+          setImageData(imageData);
           setResult(result);
           setHelper(!helper);
         }
@@ -87,11 +90,10 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
 
   return (
     <>
-      <h2>Take picture</h2>
-      <p>Fit your ID card inside the frame.</p>
-      <p>The picture will be taken automatically.</p>
+      <div>
+        <div></div>
+      </div>
 
-      <p>Approved: {`${result}`}</p>
       <video
         ref={videoRef}
         onCanPlay={handleCanPlay}
@@ -99,16 +101,29 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
         playsInline
         muted
         style={{
-          width: '260px',
-          height: '160px',
+          position: 'fixed',
+          top: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
           objectFit: 'cover',
-          borderRadius: '12px',
+          zIndex: -1,
         }}
       />
 
-      <canvas id="canvas" width={260} height={160} ref={canvasRef} />
-
-      <Button onClick={handleCancel}>Cancel</Button>
+      <Backdrop
+        onCancel={handleCancel}
+        result={result}
+        imageTaken={!!imageData}
+      />
+      <canvas
+        id="canvas"
+        width={window.innerWidth}
+        height={window.innerHeight}
+        ref={canvasRef}
+        style={{
+          display: 'none',
+        }}
+      />
     </>
   );
 };

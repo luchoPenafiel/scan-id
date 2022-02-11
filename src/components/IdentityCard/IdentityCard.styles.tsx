@@ -1,7 +1,7 @@
 // Vendors
 import styled from 'styled-components';
 
-export const IdentityCard = styled.div<{ image?: string }>`
+export const IdentityCardWrapper = styled.div`
   height: 160px;
   width: 260px;
 
@@ -13,10 +13,15 @@ export const IdentityCard = styled.div<{ image?: string }>`
   box-shadow: 0 10px 20px -6px rgba(0, 0, 0, 0.15);
   background-color: var(--white);
 
-  background-image: ${({ image }) => `url(${image})`};
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  overflow: hidden;
+`;
+
+export const IdentityCard = styled.img`
+  width: 260px;
+  height: 160px;
+
+  object-fit: cover;
+  object-position: 50% 50%;
 `;
 
 export const EmptyCard = styled.div`

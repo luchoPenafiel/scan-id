@@ -7,6 +7,7 @@ import {
   Header,
   Wrapper,
   IdentityCard,
+  IdentityCardWrapper,
   EmptyCard,
 } from '../../components';
 
@@ -30,15 +31,16 @@ export const IdentityView = ({ image, onTakePicture }: IdentityViewTypes) => {
           information.
         </p>
         {image ? (
-          <IdentityCard image={image}>
+          <IdentityCardWrapper>
+            <IdentityCard src={image} />
             <Button onClick={handleTakePicture}>Retake picture</Button>
-          </IdentityCard>
+          </IdentityCardWrapper>
         ) : (
-          <IdentityCard>
+          <IdentityCardWrapper>
             <EmptyCard>
               <Button onClick={handleTakePicture}>Take picture</Button>
             </EmptyCard>
-          </IdentityCard>
+          </IdentityCardWrapper>
         )}
       </Wrapper>
     </>
