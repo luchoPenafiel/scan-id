@@ -36,7 +36,7 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
     return new Promise((resolve) => {
       if (canvasRef && videoRef.current !== null) {
         const context = canvasRef.current?.getContext('2d');
-        resolve(context?.drawImage(videoRef.current, 0, 0, 290, 180));
+        resolve(context?.drawImage(videoRef.current, 0, 0));
       }
     });
   };
@@ -94,13 +94,27 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
         onCancel={handleCancel}
         result={result}
         imageTaken={imageData}
-        handleCanPlay={handleCanPlay}
-        videoRef={videoRef}
+      />
+      <video
+        ref={videoRef}
+        onCanPlay={handleCanPlay}
+        autoPlay
+        playsInline
+        muted
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: -1,
+        }}
       />
       <canvas
         id="canvas"
-        width={290}
-        height={180}
+        width={window.innerWidth}
+        height={window.innerHeight}
         ref={canvasRef}
         style={{
           display: 'none',

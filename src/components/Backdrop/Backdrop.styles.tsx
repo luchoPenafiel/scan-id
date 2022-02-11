@@ -1,31 +1,8 @@
 import styled from 'styled-components';
 
-export const BackdropStyled = styled.div<{ image: string }>`
-  display: flex;
-  flex-wrap: wrap;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100vw;
-  height: ${window.innerHeight}px;
-
-  background-image: url(${({ image }) => image});
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
-
 export const Top = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  width: 100vw;
-  height: ${() => (window.innerHeight - 160) / 2}px;
-
-  background: rgba(0, 0, 0, 0.7);
+  margin-top: 6rem;
+  margin-bottom: 3.75rem;
 
   h2,
   p {
@@ -34,33 +11,36 @@ export const Top = styled.div`
 `;
 
 export const Bottom = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  width: 100vw;
-  height: ${() => (window.innerHeight - 160) / 2}px;
-
-  padding: 1rem 1rem 3rem 1rem;
-
-  background: rgba(0, 0, 0, 0.7);
-
-  h2,
   p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 1rem;
+    margin-bottom: 7rem;
+
     color: var(--white);
+  }
+
+  button {
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
-export const X = styled.div`
-  background: rgba(0, 0, 0, 0.7);
-  width: calc((100vw - 290px) / 2);
-  height: 180px;
-`;
-
 export const Camera = styled.div<{ result: boolean; imageTaken: boolean }>`
+  width: 18rem;
+  height: 11rem;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 18px;
   border: 2px solid
     ${({ result, imageTaken }) =>
       imageTaken ? (result ? 'green' : 'red') : 'transparent'};
-  width: 290px;
-  height: 180px;
+
+  box-shadow: 0px 0px 0px 800px rgba(20, 28, 38, 0.75);
 `;

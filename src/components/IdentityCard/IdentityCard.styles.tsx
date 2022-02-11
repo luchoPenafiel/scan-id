@@ -2,8 +2,8 @@
 import styled from 'styled-components';
 
 export const IdentityCardWrapper = styled.div`
-  height: 180px;
-  width: 290px;
+  height: 160px;
+  width: 260px;
 
   margin-top: 1.75rem;
   margin-right: auto;
@@ -18,8 +18,8 @@ export const IdentityCardWrapper = styled.div`
 
 export const IdentityCard = styled.img`
   display: block;
-  width: 290px;
-  height: 180px;
+  width: 100%;
+  height: 100%;
 
   object-fit: cover;
 `;
