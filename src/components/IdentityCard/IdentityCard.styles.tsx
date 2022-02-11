@@ -15,6 +15,7 @@ export const IdentityCard = styled.div<{ image?: string }>`
 
   background-image: ${({ image }) => `url(${image})`};
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
 `;
 
