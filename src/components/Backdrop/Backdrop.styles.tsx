@@ -9,7 +9,7 @@ export const BackdropStyled = styled.div`
   left: 0;
 
   width: 100vw;
-  height: 100vh;
+  height: ${window.innerHeight}px;
 `;
 
 export const Top = styled.div`
@@ -18,7 +18,7 @@ export const Top = styled.div`
   justify-content: center;
 
   width: 100vw;
-  height: calc((100vh - 160px) / 2);
+  height: ${() => (window.innerHeight - 160) / 2}px;
 
   background: rgba(0, 0, 0, 0.7);
 
@@ -34,7 +34,7 @@ export const Bottom = styled.div`
   justify-content: space-between;
 
   width: 100vw;
-  height: calc((100vh - 160px) / 2);
+  height: ${() => (window.innerHeight - 160) / 2}px;
 
   padding: 1rem 1rem 3rem 1rem;
 
