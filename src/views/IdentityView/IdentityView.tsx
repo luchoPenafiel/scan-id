@@ -9,14 +9,20 @@ import {
   IdentityCard,
   IdentityCardWrapper,
   EmptyCard,
+  Pill,
 } from '../../components';
 
 type IdentityViewTypes = {
   image?: string;
+  status: boolean;
   onTakePicture: () => void;
 };
 
-export const IdentityView = ({ image, onTakePicture }: IdentityViewTypes) => {
+export const IdentityView = ({
+  image,
+  status,
+  onTakePicture,
+}: IdentityViewTypes) => {
   const handleTakePicture = () => {
     onTakePicture();
   };
@@ -24,21 +30,49 @@ export const IdentityView = ({ image, onTakePicture }: IdentityViewTypes) => {
   return (
     <>
       <Header />
-      <Wrapper>
-        <h2>Scan your ID</h2>
-        <p>
+      <Wrapper testid="identity-view">
+        <h2 data-testid="title">Scan your ID</h2>
+        <p data-testid="description">
           Take a picture. It may take time to validate your personal
           information.
         </p>
         {image ? (
-          <IdentityCardWrapper>
-            <IdentityCard src={image} />
-            <Button onClick={handleTakePicture}>Retake picture</Button>
+          <IdentityCardWrapper data-testid="taken-image">
+            <IdentityCard image={image} status={status}>
+              {!status && (
+                <Button onClick={handleTakePicture} testid="retake-picture">
+                  Retake picture
+                </Button>
+              )}
+              <Pill status={status}>
+                {status ? (
+                  <>
+                    <img
+                      src={'./icons/check.svg'}
+                      alt="Check icon"
+                      data-testid="accepted-icon"
+                    />
+                    Accepted
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src={'./icons/rejected.svg'}
+                      alt="Check icon"
+                      data-testid="rejected-icon"
+                    />
+                    Rejected
+                  </>
+                )}
+              </Pill>
+            </IdentityCard>
           </IdentityCardWrapper>
         ) : (
-          <IdentityCardWrapper>
+          <IdentityCardWrapper data-testid="placeholder-image">
             <EmptyCard>
-              <Button onClick={handleTakePicture}>Take picture</Button>
+              <Button onClick={handleTakePicture} testid="take-picture">
+                Take picture
+              </Button>
             </EmptyCard>
           </IdentityCardWrapper>
         )}

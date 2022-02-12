@@ -5,7 +5,9 @@ import {
   IdentityCard,
   EmptyCard,
   IdentityCardWrapper,
+  Pill,
 } from './IdentityCard/IdentityCard.styles';
+import { Video } from './Video/Video.styles';
 import { Wrapper } from './Wrapper/Wrapper';
 
 export {
@@ -16,4 +18,6 @@ export {
   EmptyCard,
   IdentityCardWrapper,
   Wrapper,
+  Video,
+  Pill,
 };

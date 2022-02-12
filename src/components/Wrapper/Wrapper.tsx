@@ -6,11 +6,13 @@ import { WrapperStyles } from './Wrapper.styles';
 
 export const Wrapper = ({
   children,
+  testid,
 }: {
   children: ReactElement | ReactElement[];
+  testid: string;
 }) => {
   return (
-    <WrapperStyles>
+    <WrapperStyles data-testid={testid}>
       <div>{children}</div>
     </WrapperStyles>
   );

@@ -9,33 +9,44 @@ export const Backdrop = ({
   result,
   imageTaken,
 }: {
-  result: boolean;
+  result: 'Approved' | 'Rejected';
   imageTaken: string;
   onCancel: () => void;
 }) => {
   return (
     <>
       <Top>
-        <h2>Take picture</h2>
-        <p>Fit your ID card inside the frame.</p>
-        <p>The picture will be taken automatically.</p>
+        <h2 data-testid="title">Take picture</h2>
+        <p data-testid="description">Fit your ID card inside the frame.</p>
+        <p data-testid="description">
+          The picture will be taken automatically.
+        </p>
       </Top>
       <Camera result={result} imageTaken={!!imageTaken} />
 
       <Bottom>
         <p>
-          {result ? (
+          {result === 'Approved' ? (
             <>
-              <img src={'./icons/check.svg'} alt="Check icon" /> Picture taken!
+              <img
+                src={'./icons/check-rounded.svg'}
+                alt="Check icon"
+                data-testid="approved"
+              />{' '}
+              Picture taken!
             </>
           ) : (
             <>
-              <img src={'./icons/bulb.svg'} alt="Bulb icon" />
+              <img
+                src={'./icons/bulb.svg'}
+                alt="Bulb icon"
+                data-testid="rejected"
+              />
               Room lighting is too low
             </>
           )}
         </p>
-        <Button onClick={onCancel} variant="secondary">
+        <Button onClick={onCancel} variant="secondary" testid="cancel">
           Cancel
         </Button>
       </Bottom>

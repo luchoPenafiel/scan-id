@@ -8,15 +8,21 @@ type ButtoType = {
   children: string;
   onClick: () => void;
   variant?: 'primary' | 'secondary';
+  testid: string;
 };
 
 export const Button = ({
   children,
   onClick,
   variant = 'primary',
+  testid,
 }: ButtoType) => {
   return (
-    <StyledButton onClick={onClick} variant={variant}>
+    <StyledButton
+      data-testid={`${testid}-button`}
+      onClick={onClick}
+      variant={variant}
+    >
       {children}
     </StyledButton>
   );

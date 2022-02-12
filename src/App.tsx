@@ -10,6 +10,7 @@ import { GlobalStyles } from './GlobalStyes';
 const App = () => {
   const [showScanView, setShowScanView] = useState(false);
   const [image, setImage] = useState<string>('');
+  const [isAccepted, setIsAccepted] = useState(false);
 
   const handleTakePicture = () => {
     setShowScanView(true);
@@ -17,6 +18,10 @@ const App = () => {
 
   const handleCancel = () => {
     setShowScanView(false);
+  };
+
+  const handleChangeStatus = (newStatus: boolean) => {
+    setIsAccepted(newStatus);
   };
 
   const handleSetImage = useCallback((image) => {
@@ -27,9 +32,17 @@ const App = () => {
     <>
       <GlobalStyles />
       {showScanView ? (
-        <ScanView onSaveImage={handleSetImage} onCancel={handleCancel} />
+        <ScanView
+          onSaveImage={handleSetImage}
+          onChangeStatus={handleChangeStatus}
+          onCancel={handleCancel}
+        />
       ) : (
-        <IdentityView image={image} onTakePicture={handleTakePicture} />
+        <IdentityView
+          image={image}
+          status={isAccepted}
+          onTakePicture={handleTakePicture}
+        />
       )}
     </>
   );

@@ -8,15 +8,20 @@ import { useUserMedia } from '../../hooks/useUserMedia';
 import { sendImage } from '../../api/sendImage';
 
 // Components
-import { Backdrop } from '../../components';
+import { Backdrop, Video } from '../../components';
 
 type ScanViewTypes = {
   onSaveImage: (image: string) => void;
   onCancel: () => void;
+  onChangeStatus: (newStatus: boolean) => void;
 };
 
-export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
-  const [result, setResult] = useState<boolean>(false);
+export const ScanView = ({
+  onSaveImage,
+  onChangeStatus,
+  onCancel,
+}: ScanViewTypes) => {
+  const [result, setResult] = useState<'Approved' | 'Rejected'>('Rejected');
   const [helper, setHelper] = useState<boolean>(false);
   const [imageData, setImageData] = useState('');
 
@@ -62,7 +67,7 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
 
   useEffect(() => {
     const timeOut = setTimeout(async () => {
-      if (result) {
+      if (result === 'Approved') {
         stopStreamedVideo();
         onCancel();
       } else {
@@ -76,7 +81,8 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
           const result = response.summary.outcome === 'Approved';
 
           setImageData(imageData);
-          setResult(result);
+          onChangeStatus(result);
+          setResult(result ? 'Approved' : 'Rejected');
           setHelper(!helper);
         }
       }
@@ -95,21 +101,13 @@ export const ScanView = ({ onSaveImage, onCancel }: ScanViewTypes) => {
         result={result}
         imageTaken={imageData}
       />
-      <video
+      <Video
         ref={videoRef}
         onCanPlay={handleCanPlay}
         autoPlay
         playsInline
         muted
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: -1,
-        }}
+        data-testid="scan-view"
       />
       <canvas
         id="canvas"

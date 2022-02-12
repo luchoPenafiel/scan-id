@@ -6,7 +6,7 @@ import { Wrapper } from './Header.styles';
 
 export const Header = () => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="header">
       <h1>BankClient</h1>
     </Wrapper>
   );

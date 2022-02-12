@@ -30,7 +30,10 @@ export const Bottom = styled.div`
   }
 `;
 
-export const Camera = styled.div<{ result: boolean; imageTaken: boolean }>`
+export const Camera = styled.div<{
+  result: 'Approved' | 'Rejected';
+  imageTaken: boolean;
+}>`
   width: 18rem;
   height: 11rem;
 
@@ -40,7 +43,11 @@ export const Camera = styled.div<{ result: boolean; imageTaken: boolean }>`
   border-radius: 18px;
   border: 2px solid
     ${({ result, imageTaken }) =>
-      imageTaken ? (result ? 'green' : 'red') : 'transparent'};
+      imageTaken
+        ? result === 'Approved'
+          ? 'var(--green)'
+          : 'var(--red)'
+        : 'transparent'};
 
   box-shadow: 0px 0px 0px 800px rgba(20, 28, 38, 0.75);
 `;
